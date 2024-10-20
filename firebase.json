@@ -1,0 +1,121 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "functions": {
+    "predeploy": [
+      "npm --prefix \"$RESOURCE_DIR\" run lint-fix",
+      "npm --prefix \"$RESOURCE_DIR\" run build:production"
+    ],
+    "source": "functions",
+    "ignore": [
+      "firebase.json",
+      "firebase-debug.log",
+      "package-lock.json",
+      "**/src/**",
+      "**/node_modules/**",
+      "**/test/**",
+      "**/build/**",
+      "**/cloud-run/**",
+      "**/lib-cloud-run/**"
+    ]
+  },
+  "emulators": {
+    "functions": {
+      "port": 5001
+    },
+    "firestore": {
+      "port": 8783
+    },
+    "pubsub": {
+      "port": 8784
+    },
+    "ui": {
+      "enabled": true
+    },
+    "auth": {
+      "port": 9099
+    },
+    "hosting": {
+      "port": 5002
+    },
+    "storage": {
+      "port": 9199
+    }
+  },
+  "hosting": [
+    {
+      "target": "pokeprice-admin",
+      "public": "pokeprice-admin/build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    },
+    {
+      "target": "pokeprice-webapp",
+      "public": "functions/src/web-app-v2/client/public-webapp",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "headers": [
+        {
+          "source": "**/_next/static/**.js",
+          "headers": [{
+            "key": "Cache-Control",
+            "value": "public, max-age=86400, s-maxage=172800"
+          }]
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "/**",
+          "run": {
+            "serviceId": "pokeprice-webapp-hosting",
+            "region": "europe-west2"
+          }
+        }
+      ]
+    },
+    {
+      "target": "pokeprice-webapp-dev",
+      "public": "functions/src/web-app-v2/client/public-webapp",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "headers": [
+        {
+          "source": "**/_next/static/**.js",
+          "headers": [{
+            "key": "Cache-Control",
+            "value": "public, max-age=86400, s-maxage=172800"
+          }]
+        }
+      ],
+      "rewrites": [
+        {
+          "source": "/**",
+          "run": {
+            "serviceId": "pokeprice-webapp-hosting-dev",
+            "region": "europe-west2"
+          }
+        }
+      ]
+    }
+  ],
+  "storage": {
+    "rules": "storage.rules"
+  }
+}

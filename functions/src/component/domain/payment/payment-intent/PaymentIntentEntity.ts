@@ -1,0 +1,42 @@
+import {Entity} from "../../../database/Entity";
+import {Stripe} from "stripe";
+import {Timestamp} from "../../../external-lib/Firebase";
+
+
+export interface PaymentIntentEntity extends Entity {
+  stripePaymentIntentId:string,
+  mostRecentEventTimestamp:Timestamp,
+  amount:number,
+  amountCapturable:number,
+  amountReceived:number,
+  applicationId:string|null,
+  applicationFeeAmount:number|null,
+  cancelledAt:Timestamp|null,
+  cancellationReason:Stripe.PaymentIntent.CancellationReason|null,
+  captureMethod:Stripe.PaymentIntent.CaptureMethod,
+  charges:Array<Stripe.Charge>,
+  clientSecret:string|null,
+  confirmationMethod:Stripe.PaymentIntent.ConfirmationMethod,
+  created:Timestamp,
+  currency:string,
+  customerId:string|null,
+  description:string|null,
+  invoiceId:string|null,
+  lastPaymentError:Stripe.PaymentIntent.LastPaymentError|null,
+  nextAction:Stripe.PaymentIntent.NextAction|null,
+  onBehalfOfAccountId:string|null,
+  paymentMethodId:string|null,
+  paymentMethodOptions:Stripe.PaymentIntent.PaymentMethodOptions|null,
+  paymentMethodTypes:Array<string>,
+  receiptEmail:string|null,
+  reviewId:string|null,
+  setupFutureUsage:Stripe.PaymentIntent.SetupFutureUsage|null,
+  shipping:Stripe.PaymentIntent.Shipping|null,
+  statementDescriptor:string|null,
+  statementDescriptorSuffix:string|null,
+  status:Stripe.PaymentIntent.Status,
+  transferData:Stripe.PaymentIntent.TransferData|null,
+  transferGroup:string|null,
+  metadata:{[name:string]:string},
+  rawEvent:object,
+}

@@ -1,0 +1,5 @@
+FROM node:16-slim
+WORKDIR pokeprice
+
+COPY ./build/check-ebay-listings ./
+CMD ["node", "lib/component/index-cloud-run-check-ebay-listings.js"]

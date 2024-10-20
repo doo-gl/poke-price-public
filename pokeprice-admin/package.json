@@ -1,0 +1,82 @@
+{
+  "name": "pokeprice-admin",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
+    "@material-ui/lab": "^4.0.0-alpha.61",
+    "@testing-library/jest-dom": "^6.1.3",
+    "@testing-library/react": "^12.1.5",
+    "@testing-library/user-event": "^14.5.1",
+    "@types/jest": "^29.5.5",
+    "@types/node": "^16.18.55",
+    "@types/react": "^17.0.66",
+    "@types/react-dom": "^17.0.21",
+    "axios": "^1.5.1",
+    "dinero.js": "^1.9.1",
+    "dot-object": "^2.1.4",
+    "file-saver": "^2.0.5",
+    "firebase": "^9.23.0",
+    "js-convert-case": "^4.2.0",
+    "js-cookie": "^3.0.5",
+    "lodash.get": "^4.4.2",
+    "lodash.isequal": "^4.5.0",
+    "lodash.isobject": "^3.0.2",
+    "lodash.transform": "^4.6.0",
+    "moment": "^2.29.4",
+    "node-sass": "^9.0.0",
+    "query-string": "^8.1.0",
+    "ra-data-json-server": "^4.14.4",
+    "ra-data-simple-rest": "^4.14.4",
+    "react": "^17.0.2",
+    "react-admin": "^4.14.4",
+    "react-admin-json-view": "^2.0.0",
+    "react-dom": "^17.0.2",
+    "react-json-view": "^1.21.3",
+    "react-scripts": "^5.0.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^3.5.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "start2": "PORT=3001 react-scripts --max_old_space_size=8128 start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "deploy:dev": "npm run build && firebase hosting:channel:deploy pokeprice-admin-dev --only pokeprice-admin",
+    "deploy:dev-to-prod": "firebase hosting:clone pokeprice-admin:pokeprice-admin-dev pokeprice-admin:live",
+    "deploy:prod-direct": "npm run build && firebase deploy --only hosting:pokeprice-admin"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@types/dinero.js": "^1.6.5",
+    "@types/dot-object": "^2.1.2",
+    "@types/file-saver": "^2.0.3",
+    "@types/js-cookie": "^2.2.6",
+    "@types/lodash.get": "^4.4.6",
+    "@types/lodash.isequal": "^4.5.5",
+    "@types/lodash.isobject": "^3.0.6",
+    "@types/lodash.transform": "^4.6.6",
+    "@types/react-redux": "^7.1.18",
+    "@types/react-router-dom": "^5.1.7"
+  }
+}

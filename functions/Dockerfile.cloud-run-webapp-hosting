@@ -1,0 +1,8 @@
+FROM node:16-slim
+WORKDIR pokeprice
+
+# COPY ./build/webapp-hosting ./
+# CMD ["npm", "run", "start:web:prod"]
+
+COPY ./build/webapp-hosting ./
+CMD ["node", "lib/web-app-v2/index-cloud-run-webapp-hosting.js"]

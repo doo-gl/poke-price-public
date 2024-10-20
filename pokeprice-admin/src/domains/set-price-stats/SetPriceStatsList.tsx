@@ -1,0 +1,27 @@
+import {Datagrid, DateField, List, ListProps, ReferenceField, TextField} from "react-admin";
+import {Pagination} from "../../components/Pagination";
+import {Filter} from "../../components/Filter";
+import {DOMAIN} from "../Domains";
+import {CurrencyAmountField} from "../../components/CurrencyAmountField";
+import React from "react";
+
+
+export const SetPriceStatsList = (props:ListProps) => {
+  return (
+    <List
+      {...props}
+      pagination={<Pagination/>}
+      filters={<Filter domain={DOMAIN.SET_PRICE_STATS} />}
+    >
+      <Datagrid rowClick='show' >
+        <TextField source="id" />
+        <DateField showTime source="lastCalculationTime" />
+        <DateField showTime source="mostRecentPrice" />
+        <CurrencyAmountField source='totalSetPokePrice' />
+        <ReferenceField label='Set' reference={DOMAIN.SET} source='setId' link='show'>
+          <TextField source="id" />
+        </ReferenceField>
+      </Datagrid>
+    </List>
+  )
+}

@@ -1,0 +1,5 @@
+FROM node:16-slim
+WORKDIR pokeprice
+
+COPY ./build/source-ebay-listings ./
+CMD ["node", "lib/component/index-cloud-run-source-ebay-listings.js"]

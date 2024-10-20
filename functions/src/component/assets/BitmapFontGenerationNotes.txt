@@ -1,0 +1,6 @@
+To get bitmap fonts working, start with a ttf file
+go here: https://snowb.org/
+Set the size / colour / letters you want to use
+Export as fnt TXT format (Jimp doesn't do xml)
+save to this dir
+in the .fnt file, make sure it is referencing the png file by the correct name if you have renamed the file

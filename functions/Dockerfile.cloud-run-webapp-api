@@ -1,0 +1,5 @@
+FROM node:16-slim
+WORKDIR pokeprice
+
+COPY ./build/webapp-api ./
+CMD ["node", "lib/component/index-cloud-run-webapp-api.js"]
